@@ -24,7 +24,7 @@ const getPrecedence = ({ commit }: { commit: string; subdir: string }) => {
   return i === -1 ? Infinity : i;
 };
 
-const API_BASE = "https://gitpkg.vercel.app/";
+const API_BASE = "https://packages.triggyr.xyz/";
 const REGEX_URL =
   /^https?:\/\/([^/?#]+)\/([^/?#]+)\/([^/?#]+)(?:(?:\/tree\/([^#?]+))|\/)?([#?].*)?$/;
 
