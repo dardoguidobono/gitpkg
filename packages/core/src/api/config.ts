@@ -1,0 +1,2 @@
+export const ORG_GITHUB_USERNAME = process.env.ORG_GITHUB_USERNAME;
+export const PERSONAL_ACCESS_TOKEN = process.env.PERSONAL_ACCESS_TOKEN;

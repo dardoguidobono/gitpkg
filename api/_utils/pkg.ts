@@ -11,6 +11,7 @@ import {
   type RequestQuery,
 } from "@gitpkg/core/dist/parse-url-query/index.js";
 import incrementAndCheckRateLimit from "./limit.js";
+import { PERSONAL_ACCESS_TOKEN } from "@gitpkg/core/src/api/config.js";
 
 /**
  *
@@ -109,7 +110,11 @@ export async function pkg({
 
     const tgzUrl = getTgzUrl(cii);
 
-    const tgzResp = await fetch(tgzUrl);
+    const tgzResp = await fetch(tgzUrl, {
+      headers: PERSONAL_ACCESS_TOKEN
+        ? { Authorization: `token ${PERSONAL_ACCESS_TOKEN}` }
+        : {},
+    });
 
     if (!tgzResp.ok) {
       throw new ResponseError({

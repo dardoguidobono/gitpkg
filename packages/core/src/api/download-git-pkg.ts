@@ -21,6 +21,7 @@ import {
   readableToWeb,
   writableToWeb,
 } from "@gitpkg/edge-polyfill/dist/web-stream.js";
+import { ORG_GITHUB_USERNAME } from "./config.js";
 
 export type PipelineItem =
   | NodeJS.ReadableStream
@@ -45,6 +46,9 @@ function pipelineToPkgTarEntries(pkgOpts: PkgOptions): GenFn[] {
 }
 
 export function getTgzUrl(cii: CommitIshInfo): string {
+  if (ORG_GITHUB_USERNAME && cii.user !== ORG_GITHUB_USERNAME)
+    throw new Error(`Expected repo to belong to: ${ORG_GITHUB_USERNAME}`);
+
   return codeloadUrl(`${cii.user}/${cii.repo}`, cii.commit);
 }
 
